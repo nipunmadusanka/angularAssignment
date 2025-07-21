@@ -1,0 +1,93 @@
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  <h3>@if (user()) { Edit User } @else { Add User }</h3>
+
+  <div>
+    <label for="firstName">First Name:</label>
+    <input id="firstName" formControlName="firstName">
+    @if (userForm.get('firstName')?.invalid && userForm.get('firstName')?.touched) {
+      @if (userForm.get('firstName')?.errors?.['required']) {
+        <p>First Name is required.</p>
+      }
+    }
+  </div>
+
+  <div>
+    <label for="lastName">Last Name:</label>
+    <input id="lastName" formControlName="lastName">
+    @if (userForm.get('lastName')?.invalid && userForm.get('lastName')?.touched) {
+      @if (userForm.get('lastName')?.errors?.['required']) {
+        <p>Last Name is required.</p>
+      }
+    }
+  </div>
+
+  <div>
+    <label for="email">Email:</label>
+    <input id="email" type="email" formControlName="email">
+    @if (userForm.get('email')?.invalid && userForm.get('email')?.touched) {
+      @if (userForm.get('email')?.errors?.['required']) {
+        <p>Email is required.</p>
+      }
+      @if (userForm.get('email')?.errors?.['email']) {
+        <p>Enter a valid email.</p>
+      }
+    }
+  </div>
+
+  @if (!user()) { // Password is required only for adding a new user
+    <div>
+      <label for="password">Password:</label>
+      <input id="password" type="password" formControlName="password">
+      @if (userForm.get('password')?.invalid && userForm.get('password')?.touched) {
+        @if (userForm.get('password')?.errors?.['required']) {
+          <p>Password is required.</p>
+        }
+      }
+    </div>
+  }
+
+  <div>
+    <label for="dateOfBirth">Date of Birth:</label>
+    <input id="dateOfBirth" type="date" formControlName="dateOfBirth">
+    @if (userForm.get('dateOfBirth')?.invalid && userForm.get('dateOfBirth')?.touched) {
+      @if (userForm.get('dateOfBirth')?.errors?.['required']) {
+        <p>Date of Birth is required.</p>
+      }
+    }
+  </div>
+
+  <div>
+    <label for="roleType">Role:</label>
+    <select id="roleType" formControlName="roleTypeId">
+      <option value="">--Select Role--</option>
+      @for (role of roles(); track role.roleId) {
+        <option [value]="role.roleId">{{ role.roleName }}</option>
+      }
+    </select>
+    @if (userForm.get('roleTypeId')?.invalid && userForm.get('roleTypeId')?.touched) {
+      @if (userForm.get('roleTypeId')?.errors?.['required']) {
+        <p>Role is required.</p>
+      }
+    }
+  </div>
+
+  <div>
+    <label for="status">Status:</label>
+    <select id="status" formControlName="statusId">
+      <option value="">--Select Status--</option>
+      @for (status of statuses(); track status.statusId) {
+        <option [value]="status.statusId">{{ status.statusName }}</option>
+      }
+    </select>
+    @if (userForm.get('statusId')?.invalid && userForm.get('statusId')?.touched) {
+      @if (userForm.get('statusId')?.errors?.['required']) {
+        <p>Status is required.</p>
+      }
+    }
+  </div>
+
+  <div>
+    <button type="submit" [disabled]="userForm.invalid">Save</button>
+    <button type="button" (click)="onCancel()">Cancel</button>
+  </div>
+</form>

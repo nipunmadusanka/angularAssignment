@@ -1,0 +1,34 @@
+<h2>Status List</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Status ID</th>
+      <th>Status Name</th>
+      <th>Created At</th>
+      <th>Modified At</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (status of statuses(); track status.statusId) {
+      <tr>
+        <td>{{ status.statusId }}</td>
+        <td>{{ status.statusName }}</td>
+        <td>{{ status.createdAt | date:'short' }}</td>
+        <td>{{ status.modifiedAt | date:'short' }}</td>
+        <td>
+          <button>Edit</button>
+          <button>Delete</button>
+        </td>
+      </tr>
+    }
+    @empty {
+      <tr>
+        <td colspan="5">No statuses found.</td>
+      </tr>
+    }
+  </tbody>
+</table>
+
+<button>Add Status</button>

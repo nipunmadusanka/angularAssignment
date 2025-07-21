@@ -1,0 +1,36 @@
+<h2>Role Type List</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Role ID</th>
+      <th>Role Name</th>
+      <th>Status</th>
+      <th>Created At</th>
+      <th>Modified At</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (role of roles(); track role.roleId) {
+      <tr>
+        <td>{{ role.roleId }}</td>
+        <td>{{ role.roleName }}</td>
+        <td>{{ role.status }}</td>
+        <td>{{ role.createdAt | date:'short' }}</td>
+        <td>{{ role.modifiedAt | date:'short' }}</td>
+        <td>
+          <button>Edit</button>
+          <button>Delete</button>
+        </td>
+      </tr>
+    }
+    @empty {
+      <tr>
+        <td colspan="6">No roles found.</td>
+      </tr>
+    }
+  </tbody>
+</table>
+
+<button>Add Role Type</button>
