@@ -12,22 +12,22 @@ export class UserService {
   private apiUrl = environment.apiUrl;
 
   getUsers(): Observable<UserReadDto[]> {
-    return this.http.get<UserReadDto[]>(`${this.apiUrl}/User/all`);
+    return this.http.get<UserReadDto[]>(`${this.apiUrl}/user/all`);
   }
 
   getUserByEmail(email: string): Observable<UserReadDto> {
-    return this.http.get<UserReadDto>(`${this.apiUrl}/User/by-email/${email}`);
+    return this.http.get<UserReadDto>(`${this.apiUrl}/user/by-email/${email}`);
   }
 
   addUser(user: UserCreateDto): Observable<UserReadDto> {
-    return this.http.post<UserReadDto>(`${this.apiUrl}/User/add`, user);
+    return this.http.post<UserReadDto>(`${this.apiUrl}/user/add`, user);
   }
 
   updateUser(id: number, user: UserUpdateDto): Observable<any> {
-    return this.http.put(`${this.apiUrl}/User/update/${id}`, user);
+    return this.http.put(`${this.apiUrl}/user/update/${id}`, user);
   }
 
   deleteUser(id: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/User/delete/${id}`);
+    return this.http.delete(`${this.apiUrl}/user/delete/${id}`);
   }
 }

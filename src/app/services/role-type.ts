@@ -12,18 +12,18 @@ export class RoleTypeService {
   private apiUrl = environment.apiUrl;
 
   getAllRoles(): Observable<RoleTypeReadDto[]> {
-    return this.http.get<RoleTypeReadDto[]>(`${this.apiUrl}/RoleType/all`);
+    return this.http.get<RoleTypeReadDto[]>(`${this.apiUrl}/roletype/all`);
   }
 
   addRole(roleType: RoleTypeCreateUpdateDto): Observable<RoleTypeReadDto> {
-    return this.http.post<RoleTypeReadDto>(`${this.apiUrl}/RoleType/add`, roleType);
+    return this.http.post<RoleTypeReadDto>(`${this.apiUrl}/roletype/add`, roleType);
   }
 
   updateRole(id: number, roleType: RoleTypeCreateUpdateDto): Observable<any> {
-    return this.http.put(`${this.apiUrl}/RoleType/update/${id}`, roleType);
+    return this.http.put(`${this.apiUrl}/roletype/update/${id}`, roleType);
   }
 
   deleteRole(id: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/RoleType/delete/${id}`);
+    return this.http.delete(`${this.apiUrl}/roletype/delete/${id}`);
   }
 }

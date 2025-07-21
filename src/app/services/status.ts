@@ -12,18 +12,18 @@ export class StatusService {
   private apiUrl = environment.apiUrl;
 
   getAllStatuses(): Observable<StatusReadDto[]> {
-    return this.http.get<StatusReadDto[]>(`${this.apiUrl}/Status/all`);
+    return this.http.get<StatusReadDto[]>(`${this.apiUrl}/status/all`);
   }
 
   addStatus(status: StatusCreateUpdateDto): Observable<StatusReadDto> {
-    return this.http.post<StatusReadDto>(`${this.apiUrl}/Status/add`, status);
+    return this.http.post<StatusReadDto>(`${this.apiUrl}/status/add`, status);
   }
 
   updateStatus(id: number, status: StatusCreateUpdateDto): Observable<any> {
-    return this.http.put(`${this.apiUrl}/Status/update/${id}`, status);
+    return this.http.put(`${this.apiUrl}/status/update/${id}`, status);
   }
 
   deleteStatus(id: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/Status/delete/${id}`);
+    return this.http.delete(`${this.apiUrl}/status/delete/${id}`);
   }
 }

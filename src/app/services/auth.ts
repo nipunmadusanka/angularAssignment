@@ -13,7 +13,7 @@ export class AuthService {
   private apiUrl = environment.apiUrl;
 
   login(credentials: UserLoginDto): Observable<{ token: string }> {
-    return this.http.post<{ token: string }>(`${this.apiUrl}/Auth/login`, credentials).pipe(
+    return this.http.post<{ token: string }>(`${this.apiUrl}/auth/login`, credentials).pipe(
       tap(response => {
         if (response && response.token) {
           localStorage.setItem('jwt_token', response.token);
